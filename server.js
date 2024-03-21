@@ -7,17 +7,15 @@ const PORT = 3000;
 const server = http.createServer((req, res) => {
   const pattern = /\/api\/products\/[0-9]+/;
   if (req.url === "/api/products" && req.method == "GET") {
-    console.log("get all ");
     ProductsController.getAllProducts(req, res);
-    // res.writeHead(200, { "content-type": "application/json" });
-    // res.write(JSON.stringify(products));
-    // res.end();
-  }
-  // if (req.url === "/api/products" && req.method == "POST") {
-  //   ProductsController.create(req, res);
-  // }
-  else if (req.url.match(pattern) && req.method == "GET") {
+  } else if (req.url === "/api/products" && req.method == "POST") {
+    ProductsController.create(req, res);
+  } else if (req.url.match(pattern) && req.method == "GET") {
     ProductsController.getById(req, res);
+  } else if (req.url.match(pattern) && req.method == "PUT") {
+    ProductsController.update(req, res);
+  } else if (req.url.match(pattern) && req.method == "DELETE") {
+    ProductsController.remove(req, res);
   } else {
     errorHandler.notFound(res);
   }
