@@ -6,6 +6,13 @@ async function find() {
 }
 async function findById(id) {
   return new Promise((resolve, reject) => {
-    resolve(products.find((product) => product.id == id));
+    resolve(products.find((product) => product.Id == id));
   });
 }
+
+const ProductModel = {
+  find,
+  findById,
+};
+
+module.exports = ProductModel;
