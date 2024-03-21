@@ -1,6 +1,6 @@
 const notFound = (res) => {
-  res.writeHead(404, { "Content-type": "text/plain" });
-  res.write("Not Found!");
+  res.writeHead(404, { "Content-type": "application/json" });
+  res.write(JSON.stringify({ message: "Not Found!" }));
   res.end();
 };
 
