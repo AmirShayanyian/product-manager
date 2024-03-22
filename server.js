@@ -1,7 +1,6 @@
 const http = require("http");
 const errorHandler = require("./controllers/errorHandler.controller");
 const ProductsController = require("./controllers/products.controller");
-const products = require("./data/product.json");
 
 const PORT = 3000;
 const server = http.createServer((req, res) => {

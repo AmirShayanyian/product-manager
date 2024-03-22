@@ -1,28 +1,29 @@
 const { MongoClient } = require('mongodb');
 
-class MongodbConnection {
-  #DB_URL = 'mongodb://localhost:27017/product_manager';
+class ConnectToMongo {
+  #DB_URL = 'mongodb://localhost:27017/test-db';
   #db = null;
   async #connect() {
     try {
-      const client = new MongoClient(this.#DB_URL);
-      let db = client.connect();
+      let client = new MongoClient(this.#DB_URL);
+      let db = client.db();
       return db;
     } catch (error) {
       console.log('error: ', error.message);
     }
   }
 
-  async main() {
+  async Get() {
     try {
       if (this.#db) {
-        console.log('Connected to the db...');
+        console.log('DataBase connection already exist.');
+        return this.#db;
       }
-      this.#db = this.#connect();
+      this.#db = await this.#connect();
       return this.#db;
     } catch (error) {
       console.log('error: ', error.message);
     }
   }
 }
-module.exports = MongodbConnection;
+module.exports = ConnectToMongo;
